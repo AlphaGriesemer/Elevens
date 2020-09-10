@@ -2,6 +2,9 @@ import java.util.Random;
 public class Card {
     private int value;
     Random random = new Random();
+    public Card(){
+        create_card();
+    }
     public int getValue(String value){
         //if A; value = 1
         //else if T; value = 10
