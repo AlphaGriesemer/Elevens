@@ -1,5 +1,8 @@
 public class Driver {
     public static void main(String[] args) {
-        System.out.println("Hello World");
+        Deck deck = new Deck();
+        for (Card c1: deck.getDeck()) {
+            c1.
+        }
     }
 }

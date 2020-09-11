@@ -11,9 +11,10 @@ public class board {
         //if there are no cards left in the deck then fill the space with a NULL card values
     }
 
-    private boolean containsCard(Card cardValue){
+    private boolean containsCard(Card cardValue) {
         //if the gameboard contains the card then return true
         //else return false
+        return false;
     }
 
     public boolean takeCards(Card cardValOne, Card cardValTwo, Card cardValThree){
@@ -21,10 +22,12 @@ public class board {
         //and return true
 
         //if the board does not have the card values inputted then return false
+        return false;
     }
 
     public Card[][] getBoard() {
         //return the gameboard
+        return gameboard;
     }
 
 
