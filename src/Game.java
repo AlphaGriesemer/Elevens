@@ -72,6 +72,7 @@ public class Game{
 
     public boolean play(String userChoices){
         //set the private value choice to the value of userChoices
+        //make the move the player wants to make and return whether or not the move can be made
         this.choice = userChoices;
         if(makeMove() == true){
             return true;
@@ -87,6 +88,10 @@ public class Game{
             }
             System.out.println();
         }
+    }
+
+    public boolean isPlayable(){
+        return gameboard.isPLayable();
     }
 
 

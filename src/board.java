@@ -1,4 +1,7 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Stack;
+import java.util.function.Predicate;
 
 public class board {
     private Card[][] gameboard = new Card[3][3];
@@ -7,7 +10,8 @@ public class board {
 
     //constructor
     board(){
-        // fill gameboard with first 9 cards on deck
+        // fills gameboard with first 9 cards on deck
+        // creates a new card deck
         cardDeck = new Deck();
         for(int i = 0; i < 3; i++) {
             for (int n = 0; n < 3; n++) {
@@ -17,9 +21,12 @@ public class board {
     }
 
     public boolean containsCard(String cardValue) {
-        for(int i = 0; i < this.gameboard.length; i++){
-            for(int n = 0; n < this.gameboard[0].length; n++){
-                if(this.gameboard[i][n].getValue() == cardValue){
+        //checks if the gameboard has a the card value
+        //if the gameboard has the cardValue return true
+        //if the gameboard doesn't have the card value return false
+        for(int i = 0; i < gameboard.length; i++){
+            for(int n = 0; n < gameboard[0].length; n++){
+                if(gameboard[i][n].getValue().equals(cardValue)){
                     return true;
                 }
             }
@@ -40,7 +47,7 @@ public class board {
 
         for(int i = 0; i < gameboard.length; i++){
             for(int n = 0; n < gameboard[0].length; n++){
-                if(gameboard[i][n].getValue() == cardValue){
+                if(gameboard[i][n].getValue().equals(cardValue)){
                     if(cardDeck.getNumOfCardLeft() > 0){
                         gameboard[i][n] = cardDeck.getCard();
                         return true;
@@ -56,6 +63,42 @@ public class board {
 
     public boolean isPLayable(){
         //checks if the gameboard has any elevens left
+        for(Card[] row : gameboard){
+            for(Card card : row){
+                if(card.getValue() == "J" || card.getValue() == "Q" || card.getValue() == "K"){
+                    String J = "J";
+                    String Q = "Q";
+                    String K = "K";
+
+                    Predicate<Card> Jack  = o -> o.getValue().equals(J);
+                    Predicate<Card> Queen = o -> o.getValue().equals(Q);
+                    Predicate<Card> King = o -> o.getValue().equals(K);
+
+                    for (Card[] line : gameboard) {
+                        if (Arrays.asList(line).stream().anyMatch(Jack) && Arrays.asList(line).stream().anyMatch(Queen) && Arrays.asList(line).stream().anyMatch(King)){
+                            return true;
+                        }
+                    }
+
+                } else {
+                    String val;
+                    if(card.getValue().equals("T")){
+                        val = "10";
+                    } else if(card.getValue().equals("A")){
+                        val = "1";
+                    } else {
+                        val = card.getValue();
+                    }
+                    String p1 = String.valueOf(11 - Integer.parseInt(val));
+                    Predicate<Card> value = o -> o.getValue().equals(p1);
+                    for (Card[] line : gameboard) {
+                        if (Arrays.asList(line).stream().anyMatch(value)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
         return false;
     }
 

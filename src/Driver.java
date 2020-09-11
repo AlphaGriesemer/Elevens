@@ -22,12 +22,30 @@ public class Driver {
             if (gameMode == 1 || gameMode == 2) {
                 valid = true;
             } else {
-                System.out.println("Please enter a valid game mode.");
+                System.out.print("Please enter a valid game mode. ");
                 valid = false;
             }
         } while (valid == false);
 
         if(gameMode == 1){
+            while(game.isPlayable() == true) {
+                System.out.println();
+                game.printBoard();
+                do {
+                    System.out.print("Move? ");
+                    String userMove = userInput.next();
+                    if(game.play(userMove) == true){
+                        valid = true;
+                    } else {
+                        System.out.print("Illegal move, try again. ");
+                        valid = false;
+                    }
+                } while(valid == false);
+            }
+            System.out.println();
+            game.printBoard();
+            System.out.println("Game Over");
+
 
         } else if (gameMode == 2){
             System.out.println("This game mode has not been setup yet");
