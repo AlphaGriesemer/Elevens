@@ -4,9 +4,10 @@ import java.util.Stack;
 public class Deck {
     private Stack<Card> deck = new Stack<>();
     public Deck() {
-        for (int i = 0; i < 13; i++){
+        for (int i = 1; i < 14; i++){
             for (int j = 0; j < 4; j++){
                 Card c1 = new Card(i);
+                deck.add(c1);
             }
         }
         Collections.shuffle(deck);

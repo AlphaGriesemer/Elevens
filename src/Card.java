@@ -3,17 +3,34 @@ public class Card {
     public Card(int value){
         create_card(value);
     }
-    public Card(String Default){
-        //value = "#"
+    public String getNullCard(){
+        value = "#";
+        return value;
     }
-    public String getValue(String value){
-        //if A; value = 1
-        //else if T; value = 10
+    public String getValue(){
         return value;
     }
 
 
     public String create_card(int value){
+        if(value > 1 && value < 10){
+            this.value = String.valueOf(value);
+        }
+        else if(value == 1){
+            this.value = "A";
+        }
+        else if(value == 10){
+            this.value = "T";
+        }
+        else if(value == 11){
+            this.value = "J";
+        }
+        else if(value == 12){
+            this.value = "Q";
+        }
+        else if(value == 13){
+            this.value = "K";
+        }
         //if value > 10: sudo values
             //if value == 11
                 //J
@@ -25,7 +42,7 @@ public class Card {
             //A
         //else
             // return string.valueOf(value)
-        return "";
+        return this.value;
     }
 
 }
