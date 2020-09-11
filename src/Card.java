@@ -1,9 +1,7 @@
-import java.util.Random;
 public class Card {
     private int value;
-    Random random = new Random();
-    public Card(){
-        create_card();
+    public Card(int value){
+        create_card(value);
     }
     public int getValue(String value){
         //if A; value = 1
@@ -11,8 +9,7 @@ public class Card {
         return this.value;
     }
 
-    public String create_card(){
-        //int value = random.nextInt(14);
+    public String create_card(int value){
         //if value > 10: sudo values
             //if value == 11
                 //J
