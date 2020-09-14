@@ -11,7 +11,6 @@ public class Card {
         return value;
     }
 
-
     public String create_card(int value){
         if(value > 1 && value < 10){
             this.value = String.valueOf(value);
