@@ -44,7 +44,7 @@ public class board {
         //if the deck is empty set the value of the space on the gameboard to null
         //return true to end loops and confirm that the card has been placed.
 
-        if(this.containsCard(cardValue) == false){
+        if(!this.containsCard(cardValue)){
             return false;
         }
 

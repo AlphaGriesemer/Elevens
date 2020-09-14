@@ -5,8 +5,9 @@ public class Driver {
     public static void main(String[] args) {
         /*
         Deck deck = new Deck();
-        for (Card c1: deck.getDeck()) {
-            System.out.println(c1.getValue());
+        int temp = deck.getNumOfCardLeft();
+        for (int i = 0; i < temp ; i++) {
+            System.out.println(deck.getCard().getValue());
         }
 
          */
@@ -25,22 +26,22 @@ public class Driver {
                 System.out.print("Please enter a valid game mode. ");
                 valid = false;
             }
-        } while (valid == false);
+        } while (!valid);
 
         if(gameMode == 1){
-            while(game.isPlayable() == true) {
+            while(game.isPlayable()) {
                 System.out.println();
                 game.printBoard();
                 do {
                     System.out.print("Move? ");
                     String userMove = userInput.next();
-                    if(game.play(userMove) == true){
+                    if(game.play(userMove)){
                         valid = true;
                     } else {
                         System.out.print("Illegal move, try again. ");
                         valid = false;
                     }
-                } while(valid == false);
+                } while(!valid);
             }
             System.out.println();
             game.printBoard();
@@ -50,5 +51,6 @@ public class Driver {
         } else if (gameMode == 2){
             System.out.println("This game mode has not been setup yet");
         }
+        //System.out.println(deck.getNumOfCardLeft());
     }
 }

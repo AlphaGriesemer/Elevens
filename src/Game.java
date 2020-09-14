@@ -61,9 +61,9 @@ public class Game{
         //return true after all the cards have been removed from the gameboard
 
         String[] userChoices = getUserCardChoices();
-        if(isMoveValid(userChoices) == true){
+        if(isMoveValid(userChoices)){
             for(String cardValue : userChoices){
-                if(gameboard.containsCard(cardValue) == false){
+                if(!gameboard.containsCard(cardValue)){
                     return false;
                 }
             }
@@ -79,7 +79,7 @@ public class Game{
         //set the private value choice to the value of userChoices
         //make the move the player wants to make and return whether or not the move can be made
         this.choice = userChoices;
-        if(makeMove() == true){
+        if(makeMove()){
             return true;
         } else {
             return false;
