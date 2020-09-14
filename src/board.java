@@ -26,6 +26,9 @@ public class board {
         //if the gameboard doesn't have the card value return false
         for(int i = 0; i < gameboard.length; i++){
             for(int n = 0; n < gameboard[0].length; n++){
+                if(gameboard[i][n].equals(null)){
+                    continue;
+                }
                 if(gameboard[i][n].getValue().equals(cardValue)){
                     return true;
                 }
@@ -65,7 +68,7 @@ public class board {
         //checks if the gameboard has any elevens left
         for(Card[] row : gameboard){
             for(Card card : row){
-                if(card.getValue() == "J" || card.getValue() == "Q" || card.getValue() == "K"){
+                if(card.getValue().equals("J") || card.getValue().equals("Q") || card.getValue().equals("K")){
                     String J = "J";
                     String Q = "Q";
                     String K = "K";
@@ -75,8 +78,13 @@ public class board {
                     Predicate<Card> King = o -> o.getValue().equals(K);
 
                     for (Card[] line : gameboard) {
-                        if (Arrays.asList(line).stream().anyMatch(Jack) && Arrays.asList(line).stream().anyMatch(Queen) && Arrays.asList(line).stream().anyMatch(King)){
-                            return true;
+                        if (Arrays.asList(line).stream().anyMatch(Jack)) {
+                            if (Arrays.asList(line).stream().anyMatch(Queen)) {
+                                if (Arrays.asList(line).stream().anyMatch(King)) {
+                                    System.out.println("Hi");
+                                    return true;
+                                }
+                            }
                         }
                     }
 
@@ -89,8 +97,15 @@ public class board {
                     } else {
                         val = card.getValue();
                     }
-                    String p1 = String.valueOf(11 - Integer.parseInt(val));
-                    Predicate<Card> value = o -> o.getValue().equals(p1);
+                    String p1;
+                    p1 = String.valueOf(11 - Integer.parseInt(val));
+                    if(p1.equals("10")){
+                        p1 = "A";
+                    } else if(p1.equals("1")){
+                        p1 = "T";
+                    }
+                    String finalP = p1;
+                    Predicate<Card> value = o -> o.getValue().equals(finalP);
                     for (Card[] line : gameboard) {
                         if (Arrays.asList(line).stream().anyMatch(value)) {
                             return true;

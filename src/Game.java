@@ -32,19 +32,24 @@ public class Game{
 
         int total = 0;
         for(String choice : choices) {
-            if(choice == "J" || choice == "Q" || choice == "K") {
+            if(choice.equals("J") || choice.equals("Q") || choice.equals("K")) {
                 total = total + 13;
             } else {
-                total = total + Integer.parseInt(choice);
+                if(choice.equals("T")){
+                    total = total + 10;
+                } else if (choice.equals("A")){
+                    total = total + 1;
+                } else {
+                    total = total + Integer.parseInt(choice);
+                }
             }
         }
 
-        if(total  == 11 && choices.length == 2) {
+        if(total == 11 && choices.length == 2) {
             return true;
         } else if(choices.length == 3 && total == 39) {
             return true;
         }
-
         return false;
     }
 
