@@ -52,6 +52,7 @@ public class board {
             for(int n = 0; n < gameboard[0].length; n++){
                 if(gameboard[i][n].getValue().equals(cardValue)){
                     if(cardDeck.getNumOfCardLeft() > 0){
+                        System.out.println(cardDeck.getDeck().peek().getValue());
                         gameboard[i][n] = cardDeck.getCard();
                         return true;
                     } else {
@@ -66,54 +67,27 @@ public class board {
 
     public boolean isPLayable(){
         //checks if the gameboard has any elevens left
+        if(this.containsCard("K") && this.containsCard("Q") && this.containsCard("J")){
+            return true;
+        }
         for(Card[] row : gameboard){
             for(Card card : row){
-                if(card.getValue().equals("J") || card.getValue().equals("Q") || card.getValue().equals("K")){
-                    String J = "J";
-                    String Q = "Q";
-                    String K = "K";
-
-                    Predicate<Card> Jack  = o -> o.getValue().equals(J);
-                    Predicate<Card> Queen = o -> o.getValue().equals(Q);
-                    Predicate<Card> King = o -> o.getValue().equals(K);
-
-                    for (Card[] line : gameboard) {
-                        if (Arrays.asList(line).stream().anyMatch(Jack)) {
-                            if (Arrays.asList(line).stream().anyMatch(Queen)) {
-                                if (Arrays.asList(line).stream().anyMatch(King)) {
-                                    System.out.println("Hi");
-                                    return true;
-                                }
-                            }
-                        }
+                if(card.getValue() == "K" || card.getValue() == "Q" || card.getValue() == "J"){
+                    continue;
+                } else if(card.getValue() == "T"){
+                    if(this.containsCard("A")){
+                        return true;
                     }
-
-                } else {
-                    String val;
-                    if(card.getValue().equals("T")){
-                        val = "10";
-                    } else if(card.getValue().equals("A")){
-                        val = "1";
-                    } else {
-                        val = card.getValue();
+                } else if (card.getValue() == "A"){
+                    if(this.containsCard("T")){
+                        return true;
                     }
-                    String p1;
-                    p1 = String.valueOf(11 - Integer.parseInt(val));
-                    if(p1.equals("10")){
-                        p1 = "A";
-                    } else if(p1.equals("1")){
-                        p1 = "T";
-                    }
-                    String finalP = p1;
-                    Predicate<Card> value = o -> o.getValue().equals(finalP);
-                    for (Card[] line : gameboard) {
-                        if (Arrays.asList(line).stream().anyMatch(value)) {
-                            return true;
-                        }
-                    }
+                } else if(this.containsCard(String.valueOf(11 - Integer.valueOf(card.getValue())))){
+                    return true;
                 }
             }
         }
+
         return false;
     }
 
