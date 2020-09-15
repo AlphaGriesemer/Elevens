@@ -72,17 +72,17 @@ public class board {
         }
         for(Card[] row : gameboard){
             for(Card card : row){
-                if(card.getValue() == "K" || card.getValue() == "Q" || card.getValue() == "J"){
+                if(card.getValue().equals("K") || card.getValue().equals("Q") || card.getValue().equals("J")){
                     continue;
-                } else if(card.getValue() == "T"){
+                } else if(card.getValue().equals("T")){
                     if(this.containsCard("A")){
                         return true;
                     }
-                } else if (card.getValue() == "A"){
+                } else if (card.getValue().equals("A")){
                     if(this.containsCard("T")){
                         return true;
                     }
-                } else if(this.containsCard(String.valueOf(11 - Integer.valueOf(card.getValue())))){
+                } else if(!card.getValue().equals("#") && this.containsCard(String.valueOf(11 - Integer.valueOf(card.getValue())))){
                     return true;
                 }
             }

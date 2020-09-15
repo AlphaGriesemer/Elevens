@@ -13,7 +13,7 @@ public class AI {
         for (int i = 0; i < gameBoard.getBoard().length; i++) {
             for (int j = 0; j < gameBoard.getBoard().length; j++) {
                 String temp = gameBoard.getBoard()[i][j].getValue();
-                if(!temp.equals("A") && !temp.equals("T") && !temp.equals("J") && !temp.equals("Q") && !temp.equals("K")){
+                if(!temp.equals("A") && !temp.equals("T") && !temp.equals("J") && !temp.equals("Q") && !temp.equals("K") && !temp.equals("#")){
                     tempInt = Integer.parseInt(temp);
                     if(gameBoard.containsCard(String.valueOf(11-tempInt))){
                         return temp + String.valueOf(11-tempInt);
