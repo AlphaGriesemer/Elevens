@@ -13,7 +13,7 @@ public class Driver {
          */
         Scanner userInput = new Scanner(System.in);
         Game game = new Game();
-
+        AI ai = new AI();
         //game loop
         boolean valid;
         int gameMode;
@@ -48,8 +48,30 @@ public class Driver {
             System.out.println("Game Over");
 
 
-        } else if (gameMode == 2){
-            System.out.println("This game mode has not been setup yet");
+        }
+        else if (gameMode == 2){
+            while(game.isPlayable()) {
+                System.out.println();
+                game.printBoard();
+                do {
+                    //System.out.print("Move? ");
+                    String compMove = ai.scan(game.getGameboard());
+                    System.out.println(compMove);
+                    //String userMove = userInput.next();
+                    if(game.play(compMove)){
+                        valid = true;
+                    } else {
+                        if(!game.isPlayable()){
+                            break;
+                        }
+                        System.out.print("Illegal move, try again. ");
+                        valid = false;
+                    }
+                } while(!valid && game.isPlayable());
+            }
+            System.out.println();
+            game.printBoard();
+            System.out.println("Game Over");
         }
         //System.out.println(deck.getNumOfCardLeft());
     }

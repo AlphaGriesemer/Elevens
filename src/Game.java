@@ -53,6 +53,10 @@ public class Game{
         return false;
     }
 
+    public board getGameboard(){
+        return gameboard;
+    }
+
     private boolean makeMove(){
         //get the array of user choices
         //check if the user's move is valid if invalid then return false
@@ -76,6 +80,9 @@ public class Game{
     }
 
     public boolean play(String userChoices){
+        if(userChoices.equals("none")){
+            return gameboard.isPLayable();
+        }
         //set the private value choice to the value of userChoices
         //make the move the player wants to make and return whether or not the move can be made
         this.choice = userChoices;

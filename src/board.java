@@ -56,7 +56,7 @@ public class board {
                         gameboard[i][n] = cardDeck.getCard();
                         return true;
                     } else {
-                        gameboard[i][n] = null;
+                        gameboard[i][n] = cardDeck.getCard();
                         return true;
                     }
                 }

@@ -19,6 +19,10 @@ public class Deck {
         return deck;
     }
     public Card getCard(){
+        if(deck.size() < 1){
+            Card c1 = new Card();
+            deck.push(c1);
+        }
         return deck.pop();
     }
 

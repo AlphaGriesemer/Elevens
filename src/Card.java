@@ -3,6 +3,9 @@ public class Card {
     public Card(int value){
         create_card(value);
     }
+    public Card(){
+        getNullCard();
+    }
     public String getNullCard(){
         value = "#";
         return value;
