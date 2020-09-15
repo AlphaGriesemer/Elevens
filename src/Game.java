@@ -106,6 +106,10 @@ public class Game{
         return gameboard.isPLayable();
     }
 
+    public boolean getWin(){
+        return gameboard.win();
+    }
+
 
 
 

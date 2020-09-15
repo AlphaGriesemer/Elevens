@@ -18,9 +18,9 @@ public class Driver {
         boolean valid;
         int gameMode;
         do {
-            System.out.print("Enter game mode (1 = human, 2 = AI): ");
+            System.out.print("Enter game mode (1 = human, 2 = AI, 3 = AI Simulator): ");
             gameMode = userInput.nextInt();
-            if (gameMode == 1 || gameMode == 2) {
+            if (gameMode == 1 || gameMode == 2 || gameMode == 3) {
                 valid = true;
             } else {
                 System.out.print("Please enter a valid game mode. ");
@@ -72,6 +72,22 @@ public class Driver {
             System.out.println();
             game.printBoard();
             System.out.println("Game Over");
+        } else if (gameMode == 3){
+            System.out.print("How many games do you want the AI to play? ");
+            int games = userInput.nextInt();
+
+            int wins = 0;
+            for(int i = 0; i < games; i++){
+                game = new Game();
+                ai = new AI();
+                do {
+                    game.play(ai.scan(game.getGameboard()));
+                } while(game.isPlayable());
+                if(game.getWin() == true){
+                    wins++;
+                }
+            }
+            System.out.println(wins);
         }
         //System.out.println(deck.getNumOfCardLeft());
     }

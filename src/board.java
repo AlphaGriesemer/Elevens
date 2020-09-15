@@ -52,7 +52,6 @@ public class board {
             for(int n = 0; n < gameboard[0].length; n++){
                 if(gameboard[i][n].getValue().equals(cardValue)){
                     if(cardDeck.getNumOfCardLeft() > 0){
-                        System.out.println(cardDeck.getDeck().peek().getValue());
                         gameboard[i][n] = cardDeck.getCard();
                         return true;
                     } else {
@@ -96,6 +95,21 @@ public class board {
         return gameboard;
     }
 
+    public boolean win(){
+        int count = 0;
+        for(Card[] row : gameboard){
+            for(Card card : row){
+                if(card.getValue() == "#"){
+                    count++;
+                }
+            }
+        }
+
+        if(count == 9){
+            return true;
+        }
+        return false;
+    }
 
 
 }
